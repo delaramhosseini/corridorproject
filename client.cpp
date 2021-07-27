@@ -1,235 +1,42 @@
+#include <httplib.h>
 #include <iostream>
-#include "./httplib.h"
 using namespace std;
 using namespace httplib;
 
-   
-void make2(char** C)
+int main(void)
 {
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          C[i][0]='#';
-          if(i==0 || i==12){
-             C[i][j]='#';}
-          else{
-             C[i][j]=' ';}
-          }
-      C[i][12]='#';
-      }
-   C[1][1]='1';
-   C[1][11]='2';
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-}
-
-void make3(char** C)
-{
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          C[i][0]='#';
-          if(i==0 || i==12){
-             C[i][j]='#';}
-          else{
-             C[i][j]=' ';}
-          }
-      C[i][12]='#';
-      }
-   C[1][1]='1';
-   C[1][11]='2';
-   C[11][1]='3';
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-}
-
-void make4(char** C)
-{
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          C[i][0]='#';
-          if(i==0 || i==12){
-             C[i][j]='#';}
-          else{
-             C[i][j]=' ';}
-          }
-      C[i][12]='#';
-      }
-   C[1][1]='1';
-   C[1][11]='2';
-   C[11][1]='3';
-   C[11][11]='4';
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-}
-
-           
-int up(char** C, char d)
-{
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          if(C[i][j]==d){
-             if(C[i-1][j]==' '){
-                C[i-1][j]=d;
-                C[i][j]=' ';}
-             else{
-                cout << "error"<< '\n' ;}
-             }
-      }
-   }
-      
-   
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-   
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-         if(C[i][j]==d && i==6 && j==6){
-             cout << "the player number " << d << " win" << '\n';
-             return 1;}
-         }
-     }   
-   return 0;
-}
-
-int down(char** C, char d)
-{
-   bool f=false;
-   for(int i=0 ; i<12 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          if(C[i][j]==d){
-             if(C[i+1][j]==' '){
-                C[i+1][j]=d;
-                C[i][j]=' ';
-                f=true;
-                break;}
-             else{
-                cout << "error" << '\n' ;
-                f=true;
-                break;}
-             }
-          }
-      if(f==true) break;
-      }
-    
-    for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-      
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-         if(C[i][j]==d && i==6 && j==6){
-             cout << "the player number " << d << " win" << '\n';
-             return 1;}
-         }
-     }
-    
-    return 0;
-}
-
-int right(char** C , char d)
-{
-   bool f=false;
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          if(C[i][j]==d){
-             if(C[i][j+1]==' '){
-                C[i][j+1]=d;
-                C[i][j]=' ';
-                f=true;
-                break;}
-             else{
-                cout << "error" << '\n' ;
-                f=true;
-                break;} 
-             }
-          }
-      if(f==true) break;
-      }
-  
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-  
-  for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-         if(C[i][j]==d && i==6 && j==7){
-             cout << "the player number " << d << " win" << '\n';
-             return 1;}
-         }
-     } 
-   
-   return 0;
-}
-
-int left(char** C , char d)
-{
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          if(C[i][j]==d){
-             if(C[i][j-1]==' '){
-                C[i][j-1]=d;
-                C[i][j]=' ';}
-             else{
-                cout << "error" << '\n' ;}
-             }
-          }
-      }
-    for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-          cout << C[i][j] ;}
-      cout << '\n';}
-      
-   for(int i=0 ; i<13 ; i++){
-      for(int j=0 ; j<13 ; j++){
-         if(C[i][j]==d && i==6 && j==5){
-             cout << "the player number " << d << " win" << '\n';
-             return 1;}
-         }
-     }
-    
-    return 0;
-}
-
-void wall(char** C , char d)
-{
-    int x;
-    cout << "chosse one of the players: " ;
-    cin >> x;
-}    
-
-int main() {
-   char** C;
-   C=new char* [13];
-   for(int i=0 ; i<13 ; i++){
-       C[i]=new char [13];}
-   Client cli("localhost,8080");
-   int a;
-   cout << "chosse your membership(2,3,4):" << ' ' ;
-   cin >> a;
-   switch(a){  
+  Client cli("localhost", 8080);
+  int a;
+  cout << "chosse your membership(2,3,4):" << ' ' ;
+  cin >> a;
+  switch(a){  
       case 2:
-         make2(C);
-         break;
+          if (auto res = cli.Get("/2")) {
+             if (res->status == 200) {
+                cout << res->body << endl;}
+          } 
+          else {
+             auto err = res.error();}
+          break;
       case 3:
-         make3(C);
-         break;
+          if (auto res = cli.Get("/3")) {
+             if (res->status == 200) {
+                cout << res->body << endl;}
+          } 
+          else {
+             auto err = res.error();}
+          break;
       case 4:
-         make4(C);
-         break;
-     }
-   
-   while(true){
+          if (auto res = cli.Get("/4")) {
+             if (res->status == 200) {
+                cout << res->body << endl;}
+          } 
+          else {
+             auto err = res.error();}
+          break;
+  }
+  while(true){
       int b=1;
-      int r=0;
       char d;
       while(b<=a){
          cout << "player NO." << b << ':' << '\n';
@@ -237,41 +44,37 @@ int main() {
          cin >> d;
          switch(d){
              case 'u':
-                 if(b==1) r=up(C,'1');
-                 else if(b==2) r=up(C,'2');
-                 else if(b==3) r=up(C,'3');
-                 else if(b==4) r=up(C,'4');
+                 if(b==1) auto res = cli.Get("/up1");
+                 else if(b==2) auto res = cli.Get("/up2");
+                 else if(b==3) auto res = cli.Get("/up3");
+                 else if(b==4) auto res = cli.Get("/up4");
                  break;
              case 'd':
-                 if(b==1) r=down(C,'1');
-                 else if(b==2) r=down(C,'2');
-                 else if(b==3) r=down(C,'3');
-                 else if(b==4) r=down(C,'4');
+                 if(b==1) auto res = cli.Get("/down1");
+                 else if(b==2) auto res = cli.Get("/down2");
+                 else if(b==3) auto res = cli.Get("/down3");
+                 else if(b==4) auto res = cli.Get("/down4");
                  break;
              case 'r':
-                 if(b==1) r=right(C,'1');
-                 else if(b==2) r=right(C,'2');
-                 else if(b==3) r=right(C,'3');
-                 else if(b==4) r=right(C,'4');
+                 if(b==1) auto res = cli.Get("/right1");
+                 else if(b==2) auto res = cli.Get("/right2");
+                 else if(b==3) auto res = cli.Get("/right3");
+                 else if(b==4) auto res = cli.Get("/right4");
                  break;
              case 'l':
-                 if(b==1) r=left(C,'1');
-                 else if(b==2) r=left(C,'2');
-                 else if(b==3) r=left(C,'3');
-                 else if(b==4) r=left(C,'4');
+                 if(b==1) auto res = cli.Get("/left1");
+                 else if(b==2) auto res = cli.Get("/left2");
+                 else if(b==3) auto res = cli.Get("/left3");
+                 else if(b==4) auto res = cli.Get("/left4");
                  break;
              case 'w':
-                 if(b==1) wall(C,'1');
-                 else if(b==2) wall(C,'2');
-                 else if(b==3) wall(C,'3');
-                 else if(b==4) wall(C,'4');
+                 if(b==1) auto res = cli.Get("/wall1");
+                 else if(b==2) auto res = cli.Get("/wall2");
+                 else if(b==3) auto res = cli.Get("/wall3");
+                 else if(b==4) auto res = cli.Get("/wall4");
                  break;
          }
-         if(r==1) break;
          b+=1;}
-     if(r==1) break;
      }
       
-   return 0;
 }
-
