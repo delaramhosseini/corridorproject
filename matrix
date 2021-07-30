@@ -3,8 +3,10 @@ using namespace std;
 
 class matrix
 {
-   public:
-      char** C;   
+   private:
+      char** C;
+      
+   public:   
       matrix(){
          C=new char* [13];
          for(int i=0; i<13 ; i++){
@@ -18,7 +20,7 @@ class matrix
       int down( char );
       int right( char );
       int left( char );
-      void wall( char );
+      void wall( char , char);
 };
 
 
@@ -90,7 +92,7 @@ int matrix::up(char d)
                 C[i-1][j]=d;
                 C[i][j]=' ';}
              else{
-                cout << "error"<< '\n' ;}
+                return 2;}
              }
       }
    }   
@@ -112,13 +114,13 @@ int matrix::down(char d)
              if(C[i+1][j]==' '){
                 C[i+1][j]=d;
                 C[i][j]=' ';
-                f=true;
-                break;}
+                f=true;}
+
              else{
-                cout << "error" << '\n' ;
                 f=true;
-                break;}
-             }
+                return 2;}
+             
+             break;}
           }
       if(f==true) break;
    }      
@@ -141,19 +143,18 @@ int matrix::right(char d)
              if(C[i][j+1]==' '){
                 C[i][j+1]=d;
                 C[i][j]=' ';
-                f=true;
-                break;}
+                f=true;}
              else{
-                cout << "error" << '\n' ;
                 f=true;
-                break;} 
-             }
-          }
+                return 2;}
+             
+             break;} 
+           }
       if(f==true) break;
       }
   for(int i=0 ; i<13 ; i++){
       for(int j=0 ; j<13 ; j++){
-         if(C[i][j]==d && i==6 && j==7){
+         if(C[i][j]==d && i==6 && j==6){
              return 1;}
          }
      } 
@@ -170,13 +171,13 @@ int matrix::left(char d)
                 C[i][j-1]=d;
                 C[i][j]=' ';}
              else{
-                cout << "error" << '\n' ;}
+                return 2;}
              }
           }
       }
    for(int i=0 ; i<13 ; i++){
       for(int j=0 ; j<13 ; j++){
-         if(C[i][j]==d && i==6 && j==5){
+         if(C[i][j]==d && i==6 && j==6){
              return 1;}
          }
      }
@@ -184,11 +185,32 @@ int matrix::left(char d)
     return 0;
 }
 
-void matrix::wall(char d)
+void matrix::wall(char d,char x)
 {
-    int x;
-    cout << "chosse one of the players: " ;
-    cin >> x;
+    bool f=false;
+    for(int i=0 ; i<13 ; i++){
+       for( int j=0 ; i<13 ; j++){
+           if( C[i][j]==d ){
+              if( x=='u' ){
+                if(C[i-1][j]==' ') C[i-1][j]='*';
+                if(C[i-1][j+1]==' ') C[i-1][j+1]='*';
+                if(C[i-1][j-1]==' ') C[i-1][j-1]='*';}
+              else if( x=='d'){
+                if(C[i+1][j]==' ') C[i+1][j]='*';
+                if(C[i+1][j+1]==' ') C[i+1][j+1]='*';
+                if(C[i+1][j-1]==' ') C[i+1][j-1]='*';}
+              else if( x=='l'){
+                if(C[i][j-1]==' ') C[i][j-1]='*';
+                if(C[i+1][j-1]==' ') C[i+1][j-1]='*';
+                if(C[i-1][j-1]==' ') C[i-1][j-1]='*';}
+              else if( x=='r'){
+                if(C[i][j+1]==' ') C[i][j+1]='*';
+                if(C[i+1][j+1]==' ') C[i+1][j+1]='*';
+                if(C[i-1][j+1]==' ') C[i-1][j+1]='*';}
+              f=true;
+              break;}
+        }
+        if( f==true ) break;}
 }    
 
 

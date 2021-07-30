@@ -236,5 +236,5 @@ int main(void)
          b+=1;}
      if( r==1 ) break;
      }
-      
 }
+
