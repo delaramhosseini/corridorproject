@@ -31,6 +31,7 @@ int main(void)
           }
           break;
   }
+  C.readfile();
   while(true){
       int b=1;
       char d;
@@ -232,6 +233,7 @@ int main(void)
                        }
                     }
          }
+         C.readfile();
          if( r==1 ) break;
          b+=1;}
      if( r==1 ) break;
